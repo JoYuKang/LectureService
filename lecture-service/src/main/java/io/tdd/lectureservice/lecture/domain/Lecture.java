@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -34,6 +34,11 @@ public class Lecture extends BaseEntity {
 
     @Column(name = "lecture_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
-    private LocalDate lectureDate;
+    private LocalDateTime lectureDate;
+
+    public void countdown() {
+        this.capacity--;
+    }
+
 
 }

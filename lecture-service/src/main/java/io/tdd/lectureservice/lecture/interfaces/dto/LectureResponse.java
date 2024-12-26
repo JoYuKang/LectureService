@@ -1,9 +1,10 @@
 package io.tdd.lectureservice.lecture.interfaces.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.tdd.lectureservice.lecture.domain.Lecture;
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 public class LectureResponse {
@@ -12,7 +13,8 @@ public class LectureResponse {
 
     private String speaker;
 
-    private LocalDate lectureDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd-HH-mm", timezone = "Asia/Seoul")
+    private LocalDateTime lectureDate;
 
     private int capacity;
 
