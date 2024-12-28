@@ -1,12 +1,13 @@
 package io.tdd.lectureservice.reservation.domain;
 
 import io.tdd.lectureservice.lecture.domain.Lecture;
-import io.tdd.lectureservice.lecture.domain.LectureRepository;
+import io.tdd.lectureservice.lecture.interfaces.LectureRepository;
+import io.tdd.lectureservice.reservation.interfaces.ReservationRepository;
 import io.tdd.lectureservice.reservation.interfaces.dto.request.ReservationRequest;
 import io.tdd.lectureservice.support.exception.CustomNotFoundException;
 import io.tdd.lectureservice.support.exception.MaxCapacityException;
 import io.tdd.lectureservice.user.domain.User;
-import io.tdd.lectureservice.user.domain.UserRepository;
+import io.tdd.lectureservice.user.interfaces.UserRepository;
 import io.tdd.lectureservice.user.domain.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,7 @@ class ReservationServiceTest {
         ReservationRequest request = new ReservationRequest(user.getId(), lecture.getId());
 
         // when, then
-        assertThat(reservationService.add(request).getLectureId()).isEqualTo(1L);
+        assertThat(reservationService.add(request).getId()).isEqualTo(1L);
         assertThat(reservationService.add(request).getSubject()).isEqualTo(lecture.getSubject());
     }
 

@@ -1,5 +1,6 @@
-package io.tdd.lectureservice.lecture.domain;
+package io.tdd.lectureservice.lecture.interfaces;
 
+import io.tdd.lectureservice.lecture.domain.Lecture;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;

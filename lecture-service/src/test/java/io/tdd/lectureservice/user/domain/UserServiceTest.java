@@ -2,6 +2,7 @@ package io.tdd.lectureservice.user.domain;
 
 import io.tdd.lectureservice.support.exception.CustomNotFoundException;
 import io.tdd.lectureservice.support.exception.InvalidException;
+import io.tdd.lectureservice.user.interfaces.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

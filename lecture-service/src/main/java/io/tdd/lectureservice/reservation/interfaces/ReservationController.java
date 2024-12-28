@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -20,12 +21,12 @@ public class ReservationController {
     // 특강 신청 완료 목록 조회 API
     @GetMapping("/list/{userId}")
     public List<ReservationResponse> getreservationList(@Min(1) @PathVariable Long userId) {
-        return reservationService.reserveList(userId);
+        return reservationService.reserveList(userId).stream().map(ReservationResponse::new).collect(Collectors.toList());
     }
 
     // 특강 신청 API
     @PostMapping("/add")
     public ReservationResponse addReservation(@RequestBody ReservationRequest request) {
-        return reservationService.add(request);
+        return new ReservationResponse(reservationService.add(request));
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/lecture")
@@ -22,7 +23,7 @@ public class LectureController {
     // 특강 신청 가능 목록 조회 API
     @GetMapping("/list/{date}")
     public List<LectureResponse> getLectureList(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate date) {
-        return lectureService.search(date);
+        return lectureService.search(date).stream().map(LectureResponse::new).collect(Collectors.toList());
     }
 
 }

@@ -1,6 +1,7 @@
-package io.tdd.lectureservice.reservation.domain;
+package io.tdd.lectureservice.reservation.interfaces;
 
 import io.tdd.lectureservice.lecture.domain.Lecture;
+import io.tdd.lectureservice.reservation.domain.Reservation;
 import io.tdd.lectureservice.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

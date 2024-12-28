@@ -1,7 +1,8 @@
 package io.tdd.lectureservice.reservation.domain;
 
 import io.tdd.lectureservice.lecture.domain.Lecture;
-import io.tdd.lectureservice.lecture.domain.LectureRepository;
+import io.tdd.lectureservice.lecture.interfaces.LectureRepository;
+import io.tdd.lectureservice.reservation.interfaces.ReservationRepository;
 import io.tdd.lectureservice.reservation.interfaces.dto.request.ReservationRequest;
 import io.tdd.lectureservice.reservation.interfaces.dto.response.ReservationResponse;
 import io.tdd.lectureservice.support.exception.CustomNotFoundException;
@@ -9,7 +10,7 @@ import io.tdd.lectureservice.support.exception.DuplicateException;
 import io.tdd.lectureservice.support.exception.InvalidException;
 import io.tdd.lectureservice.support.exception.MaxCapacityException;
 import io.tdd.lectureservice.user.domain.User;
-import io.tdd.lectureservice.user.domain.UserRepository;
+import io.tdd.lectureservice.user.interfaces.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class ReservationService {
      * @throws MaxCapacityException    수강생이 30명이 넘을 경우
      */
     @Transactional
-    public ReservationResponse add(ReservationRequest request) {
+    public Reservation add(ReservationRequest request) {
 
         User user = userRepository.findById(request.getUserId()).orElseThrow(() -> new CustomNotFoundException("유저"));
         Lecture lecture = lectureRepository.findById(request.getLectureId()).orElseThrow(() -> new CustomNotFoundException("특강"));
@@ -54,7 +55,7 @@ public class ReservationService {
         lectureRepository.save(lecture);
 
         // 예약 저장 및 return
-        return new ReservationResponse(saveReservation);
+        return saveReservation;
     }
 
     /**
@@ -64,9 +65,9 @@ public class ReservationService {
      * @throws InvalidException userId가 유효하지 않은 경우
      * @throws CustomNotFoundException 유저를 찾지 못한 경우
      */
-    public List<ReservationResponse> reserveList(long userId) {
+    public List<Reservation> reserveList(long userId) {
         userRepository.findById(userId).orElseThrow(() -> new CustomNotFoundException("유저"));
-        return reservationRepository.searchAllByUserIdOrderById(userId).stream().map(ReservationResponse::new).collect(Collectors.toList());
+        return reservationRepository.searchAllByUserIdOrderById(userId);
     }
 
 

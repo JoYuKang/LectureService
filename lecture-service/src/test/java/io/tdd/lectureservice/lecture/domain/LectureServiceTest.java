@@ -1,5 +1,6 @@
 package io.tdd.lectureservice.lecture.domain;
 
+import io.tdd.lectureservice.lecture.interfaces.LectureRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

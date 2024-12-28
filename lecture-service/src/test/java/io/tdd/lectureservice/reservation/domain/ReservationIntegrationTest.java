@@ -2,10 +2,10 @@ package io.tdd.lectureservice.reservation.domain;
 
 
 import io.tdd.lectureservice.lecture.domain.Lecture;
-import io.tdd.lectureservice.lecture.domain.LectureRepository;
+import io.tdd.lectureservice.lecture.interfaces.LectureRepository;
 import io.tdd.lectureservice.reservation.interfaces.dto.request.ReservationRequest;
 import io.tdd.lectureservice.user.domain.User;
-import io.tdd.lectureservice.user.domain.UserRepository;
+import io.tdd.lectureservice.user.interfaces.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
